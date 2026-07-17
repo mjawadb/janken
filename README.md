@@ -23,7 +23,7 @@ This project is built from scratch using core web technologies:
 
 ## 📸 Preview
 *Enjoy the sleek user interface and responsive layout!*
-*(You can add a screenshot of your game here later)*
+![Game Preview](img/preview.png)
 
 ---
 
