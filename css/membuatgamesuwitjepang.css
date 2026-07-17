@@ -14,7 +14,8 @@ html body {
 }
 
 body {
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .bg-img {
@@ -22,7 +23,7 @@ body {
 	height: 100%;
 	background-image: url(../img/bg2.png);
 	filter: blur(3px);
-	position: absolute;
+	position: fixed;
 	z-index: -999px;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -44,18 +45,35 @@ body {
 }
 
 .container {
-	width: 1100px;
-	height: 500px;
+	width: 100%;
+	max-width: 1100px;
+	height: auto;
+	min-height: 500px;
 	margin: 0 auto;
 	margin-top: 25px;
 	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .area-player {
-	width: 545px;
-	height: 500px;
+	flex: 1 1 300px;
+	min-height: 500px;
 	border-radius: 50px 0 0 50px;
 	background-image: linear-gradient(to left, #5AFF15, #00B712);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.area-player ul {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0;
+	margin: 0;
 }
 
 ul li {
@@ -67,11 +85,11 @@ li img {
 	width: 140px;
 	height: 140px;
 	margin-top: 20px;
-	margin-left: 185px;
 	border-radius: 50%;
 	border: 5px solid darkgrey;
 	transition: .3s;
 	position: relative;
+	cursor: pointer;
 }
 
 li img:hover {
@@ -83,20 +101,20 @@ li img:active {
 }
 
 .area-computer {
-	width: 545px;
-	height: 500px;
-	position: absolute;
-	top: 0;
-	right: 0;
+	flex: 1 1 300px;
+	min-height: 500px;
 	border-radius: 0 50px 50px 0;
 	background-image: linear-gradient(to left, #fa8072, #ffa07a);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
 }
 
 .area-computer img {
 	width: 300px;
 	height: 300px;
-	margin-top: 100px;
-	margin-left: 130px;
 	border-radius: 50%;
 	border: 5px solid darkgrey;
 	box-sizing: border-box;
@@ -104,31 +122,46 @@ li img:active {
 
 .area-computer p {
 	color: #444444;
-	/*margin-top: -400px;*/
-	margin-left: 410px;
-	margin-top: -380px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
 	width: 110px;
 	height: 30px;
 	background-color: white;
 	text-align: center;
 	line-height: 25px;
 	border-radius: 10px;
+	margin: 0;
+}
+
+.center-area {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 100%;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	pointer-events: none;
+	z-index: 2;
 }
 
 .info {
-	width: 300px;
+	width: 100%;
 	height: 60px;
 	background-color: whitesmoke;
-	position: absolute;
-	top: 0;
-	left: 400px;
 	border-radius: 50px;
 	border: 5px solid darkgrey;
 	text-transform: uppercase;
 	color: #444444;
 	text-align: center;
-	line-height: 60px;
+	line-height: 50px;
 	font-size: 30px;
+	pointer-events: auto;
+	box-sizing: border-box;
 }
 
 .score {
@@ -138,33 +171,32 @@ li img:active {
 	line-height: 60px;
 }
 
-.scr-p {
+.scr-p, .scr-c {
 	width: 65px;
 	height: 65px;
 	background-color: white;
 	position: absolute;
 	top: 80px;
-	left: 470px;
 	border-radius: 10px;
+	line-height: 65px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.scr-p {
+	right: 20px;
 }
 
 .scr-c {
-	width: 65px;
-	height: 65px;
-	background-color: white;
-	position: absolute;
-	top: 80px;
-	right: 470px;
-	border-radius: 10px;
+	left: 20px;
 }
 
 .reset {
 	width: 100px;
 	height: 40px;
 	background-color: white;
-	position: absolute;
-	bottom: 5px;
-	left: 500px;
+	margin-bottom: 20px;
 	border-radius: 10px;
 	border: 5px solid darkgrey;
 	box-sizing: border-box;
@@ -174,6 +206,7 @@ li img:active {
 	line-height: 30px;
 	transition: .3s;
 	cursor: pointer;
+	pointer-events: auto;
 }
 
 .reset:hover {
@@ -197,22 +230,26 @@ li img:active {
 }
 
 .pemenang {
-	width: 800px;
-	height: 500px;
+	width: 90%;
+	max-width: 800px;
+	height: auto;
+	min-height: 400px;
 	background-color: white;
-	position: absolute;
+	position: fixed;
 	z-index: 99999;
-	top: 75px;
-	left: 290px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	border-radius: 10px;
 	border: 5px solid darkgrey;
 	box-sizing: border-box;
 	color: #444;
-	font-size: 80px;
+	font-size: 5vw; /* make font relative for mobile */
 	text-align: center;
 	display: none;
 	text-transform: uppercase;
 	animation: fadeIn .3s;
+	padding: 20px;
 }
 
 .pemenang p {
@@ -221,14 +258,14 @@ li img:active {
 
 .pemenang .p2 {
 	margin-top: 30px;
-	font-size: 40px;
+	font-size: 4vw;
 }
 
 .pemenang .close {
 	width: 150px;
 	height: 50px;
 	background-image: linear-gradient(to bottom, #eb3349, #f45c43);
-	margin: 80px auto 0;
+	margin: 50px auto 0;
 	border-radius: 10px;
 	border: 5px solid black;
 	box-sizing: border-box;
@@ -238,6 +275,14 @@ li img:active {
 	cursor: pointer;
 }
 
+@media (min-width: 768px) {
+    .pemenang {
+        font-size: 80px;
+    }
+    .pemenang .p2 {
+        font-size: 40px;
+    }
+}
 
 /*animasi*/ 
 /*animasi fade in*/ 
@@ -248,5 +293,65 @@ li img:active {
 
 	100% {
 		opacity: 1;
+	}
+}
+
+@media (max-width: 768px) {
+	.container {
+		flex-direction: column;
+		min-height: auto;
+		margin-top: 10px;
+		width: 95%;
+	}
+	.area-player, .area-computer {
+		border-radius: 20px;
+		min-height: auto;
+		padding: 20px 0;
+	}
+	.area-player ul {
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	li img {
+		width: 100px;
+		height: 100px;
+		margin: 10px;
+	}
+	.area-computer img {
+		width: 200px;
+		height: 200px;
+		margin: 20px 0;
+	}
+	.center-area {
+		position: static;
+		transform: none;
+		width: 100%;
+		flex-direction: row;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+	.info {
+		width: auto;
+		flex: 1;
+		margin-right: 10px;
+		font-size: 20px;
+	}
+	.reset {
+		margin-bottom: 0;
+	}
+	.scr-p, .scr-c {
+		top: 10px;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 20px;
+	}
+	.area-computer p {
+		top: 10px;
+		right: 10px;
+	}
+	.judul {
+		font-size: 40px;
 	}
 }
