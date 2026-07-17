@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Game Suwit Jepang</title>
+	<link rel="stylesheet" href="css/membuatgamesuwitjepang.css">
+	<link rel="stylesheet" href="css/cssreset.css">
+</head>
+<body>
+	<div class="bg-img"></div>
+
+	<h1 class="judul">Suwit Jepang</h1>
+	<div class="container">
+		<div class="area-player">
+			<ul>
+				<li>
+					<img src="img/gunting.png" class="gunting">
+				</li>
+				<li>
+					<img src="img/batu.png" class="batu">
+				</li>
+				<li>
+					<img src="img/kertas.png" class="kertas">
+				</li>
+			</ul>
+		</div>
+
+		<div class="area-computer">
+			<img src="img/gun2.gif">
+			<p>Mr.Computer</p>
+		</div>
+
+		<div class="info"></div>
+
+		<div class="score">
+			<div class="scr-p"></div>
+			<div class="scr-c"></div>
+		</div>
+
+		<div class="reset">reset</div>
+	</div>
+
+	<!-- confetti effect -->
+	<canvas id="my-canvas"></canvas>
+
+	<!-- label pemenang -->
+	<div class="pemenang">
+		<p class="p1"></p>
+		<p class="p2"></p>
+		<div class="close">OKAY</div>
+	</div>
+
+<audio src="audio/jankenponaudio.mp3" id="audio-janken"></audio>
+<audio src="audio/congratsaudio.mp3" id="audio-won"></audio>
+<audio src="audio/lostaudio.mp3" id="audio-lost"></audio>
+<!-- confetti effect (plugin) -->
+<script src="js/confetti/index.min.js"></script>
+<script src="membuatgamesuwitjepang.js"></script>
+</body>
+</html>
